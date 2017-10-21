@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>AGENCIA PAGE - Agencias</title>
+    </h:head>
+    <h:body>
+        <h3>AGENCIA - PAGES MENU</h3>
+        <h:form>
+            <h:commandButton value="VOLTAR PARA A HOME PAGE" action="index?faces-redirect=true"></h:commandButton>
+        </h:form>
+        
+        <h3>AGENCIA FORM</h3>
+        <h:form>
+            <h:outputLabel>ID: </h:outputLabel>
+            <h:inputText disabled="true" value="#{agenciaController.agencia.id}"/>
+            <h:outputText value="&lt;br/&gt;" escape="false" />
+            
+            <h:outputLabel>Nome: </h:outputLabel>
+            <h:inputText value="#{agenciaController.agencia.nome}"/>
+            <h:outputText value="&lt;br/&gt;" escape="false" />
+            
+            <h:outputLabel>CNPJ: </h:outputLabel>
+            <h:inputText value="#{agenciaController.agencia.CNPJ}"/>
+            <h:outputText value="&lt;br/&gt;" escape="false" />
+            
+            <h:outputLabel>Endereço: </h:outputLabel>
+            <h:inputText value="#{agenciaController.agencia.endereco}"/>
+            <h:outputText value="&lt;br/&gt;" escape="false" />
+           
+            <h:commandButton rendered="#{agenciaController.editing == false}"
+                             value="SALVAR" 
+                             action="#{agenciaController.salvarAgencia()}"/>
+
+            <h:commandButton rendered="#{agenciaController.editing == true}"
+                             value="ATUALIZAR" 
+                             action="#{agenciaController.atualizarAgencia()}"/>
+        </h:form>
+        
+        <h3>AGENCIA LIST</h3>
+        <h:dataTable value="#{agenciaController.listarAgencias()}" var="a">
+            <h:column>
+                <f:facet name="header">ID</f:facet>
+                    #{a.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header">NOME</f:facet>
+                    #{a.nome}
+            </h:column>
+            <h:column>
+                <f:facet name="header">CNPJ</f:facet>
+                    #{a.CNPJ}
+            </h:column>
+            <h:column>
+                <f:facet name="header">ENDEREÇO</f:facet>
+                    #{a.endereco}
+            </h:column>
+            <h:column>
+                <f:facet name="header">EDITAR</f:facet>
+                <h:form>
+                    <h:commandButton value="Editar" action="#{agenciaController.setEditingAgencia(a)}"/>
+                </h:form>
+            </h:column>
+            <h:column>
+                <f:facet name="header">DELETAR</f:facet>
+                <h:form>
+                    <h:commandButton value="Excluir" action="#{agenciaController.deletarAgencia(a)}"/>
+                </h:form>
+            </h:column>
+        </h:dataTable>
+        
+    </h:body>
+</html>
+

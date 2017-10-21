@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>HOTEL PAGE - Quarto</title>
+    </h:head>
+    <h:body>
+        <h3>HOTEL - PAGES MENU</h3>
+        <h:form>
+            <h:commandButton value="VOLTAR PARA A HOME PAGE" action="index?faces-redirect=true"></h:commandButton>
+        </h:form>
+
+        <h3>QUARTO FORM</h3>
+        <h:form>
+            <h:outputLabel>ID: </h:outputLabel>
+            <h:inputText disabled="true" value="#{quartoController.quarto.id}"/>
+            <h:outputText value="&lt;br/&gt;" escape="false" />
+            
+            <h:outputLabel>Hotel: </h:outputLabel>
+            <h:selectOneMenu value="#{quartoController.hotelId}" >
+                <f:selectItems value="#{quartoController.listarHoteis()}"
+                               var="hotel" itemLabel="#{hotel.hotelEmb.nome}" itemValue="#{hotel.id}" />
+            </h:selectOneMenu>
+            
+            <h:outputText value="&lt;br/&gt;" escape="false" />
+            
+            <h:outputLabel>Número </h:outputLabel>
+            <h:inputText value="#{quartoController.quarto.numero}"/>
+            <h:outputText value="&lt;br/&gt;" escape="false" />
+            
+                <h:outputLabel>Diaria: </h:outputLabel>
+                <h:inputText value="#{quartoController.quarto.diaria}" converter="javax.faces.BigDecimal" />
+                <h:outputText value="&lt;br/&gt;" escape="false" />
+
+            <h:commandButton rendered="#{quartoController.editing == false}"
+                             value="SALVAR" 
+                             action="#{quartoController.salvarQuarto()}"/>
+
+            <h:commandButton rendered="#{quartoController.editing == true}"
+                             value="ATUALIZAR" 
+                             action="#{quartoController.atualizarQuarto()}"/>
+        </h:form>
+
+    </h:body>
+
+    <h3>QUARTO LIST</h3>
+    <h:dataTable value="#{quartoController.listarQuartos()}" var="q">
+        <h:column>
+            <f:facet name="header">ID</f:facet>
+                #{q.id}
+        </h:column>
+        <h:column>
+            <f:facet name="header">HOTEL</f:facet>
+                #{q.hotel.hotelEmb.nome}
+        </h:column>
+        <h:column>
+            <f:facet name="header">NUMERO</f:facet>
+                #{q.numero}
+        </h:column>
+        <h:column>
+            <f:facet name="header">DIARIA</f:facet>
+                #{q.diaria}
+        </h:column>
+        <h:column>
+            <f:facet name="header">EDITAR</f:facet>
+            <h:form>
+                <h:commandButton value="Editar" action="#{quartoController.setEditQuarto(q)}"/>
+            </h:form>
+        </h:column>
+        <h:column>
+            <f:facet name="header">DELETAR</f:facet>
+            <h:form>
+                <h:commandButton value="Excluir" action="#{quartoController.deletarQuarto(q)}"/>
+            </h:form>
+        </h:column>
+    </h:dataTable>
+</html>
+

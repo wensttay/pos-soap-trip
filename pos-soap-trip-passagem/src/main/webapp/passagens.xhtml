@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:head>
+        <title>PASSGEMS PAGE - Passagens</title>
+    </h:head>
+    <h:body>
+        <h3>PASSAGEM - PAGES MENU</h3>>
+        <h:form>
+            <h:commandButton value="VOLTAR PARA A HOME PAGE" action="index?faces-redirect=true"></h:commandButton>
+        </h:form>
+
+        <h3>PASSAGENS FORM</h3>
+        <h:form>
+            <h:outputLabel>ID: </h:outputLabel>
+            <h:inputText disabled="true" value="#{passagemController.passagem.id}"/>
+            <h:outputText value="&lt;br/&gt;" escape="false" />
+            
+            <h:outputLabel>Code: </h:outputLabel>
+            <h:inputText value="#{passagemController.passagem.code}"/>
+            <h:outputText value="&lt;br/&gt;" escape="false" />
+            
+            <h:outputLabel>Voo: </h:outputLabel>
+            <h:selectOneMenu value="#{passagemController.vooId}" >
+                <f:selectItems value="#{passagemController.listarVoos()}"
+                               var="voo" itemLabel="#{voo}" itemValue="#{voo.id}" />
+            </h:selectOneMenu>
+            <h:outputText value="&lt;br/&gt;" escape="false" />
+            
+            <h:outputLabel>Cliente: </h:outputLabel>
+            <h:selectOneMenu value="#{passagemController.clienteCpf}" >
+                <f:selectItems value="#{passagemController.listarClientes()}"
+                               var="cliente" itemLabel="#{cliente.nome}" itemValue="#{cliente.cpf}" />
+            </h:selectOneMenu>
+            <h:outputText value="&lt;br/&gt;" escape="false" />
+
+            <h:outputLabel>Cadeira: </h:outputLabel>
+            <h:inputText value="#{passagemController.passagem.cadeira}"/>
+            <h:outputText value="&lt;br/&gt;" escape="false" />
+
+            <h:outputLabel>Preço: </h:outputLabel>
+            <h:inputText value="#{passagemController.passagem.preco}" converter="javax.faces.BigDecimal" />
+            <h:outputText value="&lt;br/&gt;" escape="false" />
+            
+           
+            <h:commandButton rendered="#{passagemController.editing == false}"
+                             value="SALVAR" 
+                             action="#{passagemController.salvarPassagem()}"/>
+
+            <h:commandButton rendered="#{passagemController.editing == true}"
+                             value="ATUALIZAR" 
+                             action="#{passagemController.atualizarPassagem()}"/>
+        </h:form>
+        
+        <h3>PASSAGEM LIST</h3>
+        <h:dataTable value="#{passagemController.listarPassagens()}" var="p">
+            <h:column>
+                <f:facet name="header">ID</f:facet>
+                    #{p.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header">CODE</f:facet>
+                    #{p.code}
+            </h:column>
+            <h:column>
+                <f:facet name="header">VOO</f:facet>
+                    #{p.voo}
+            </h:column>
+            <h:column>
+                <f:facet name="header">CADEIRA</f:facet>
+                    #{p.cadeira}
+            </h:column>
+            <h:column>
+                <f:facet name="header">PREÇO</f:facet>
+                    #{p.preco}
+            </h:column>
+            <h:column>
+                <f:facet name="header">CLIENTE</f:facet>
+                    #{p.clienteEmb.nome}
+            </h:column>
+            <h:column>
+                <f:facet name="header">EDITAR</f:facet>
+                <h:form>
+                    <h:commandButton value="Editar" action="#{passagemController.setEditingPassagem(p)}"/>
+                </h:form>
+            </h:column>
+            <h:column>
+                <f:facet name="header">DELETAR</f:facet>
+                <h:form>
+                    <h:commandButton value="Excluir" action="#{passagemController.deletarPassagem(p)}"/>
+                </h:form>
+            </h:column>
+        </h:dataTable>
+        
+    </h:body>
+</html>
+

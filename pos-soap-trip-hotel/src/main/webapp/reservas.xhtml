@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>HOTEL PAGE - Reserva</title>
+    </h:head>
+    <h:body>
+        <h3>HOTEL - PAGES MENU</h3>
+        <h:form>
+            <h:commandButton value="VOLTAR PARA A HOME PAGE" action="index?faces-redirect=true"></h:commandButton>
+        </h:form>
+
+        <h3>RESERVA FORM</h3>
+        <h:form>
+            <h:outputLabel>ID: </h:outputLabel>
+            <h:inputText disabled="true" value="#{reservaController.reserva.id}"/>
+            <h:outputText value="&lt;br/&gt;" escape="false" />
+
+            <h:outputLabel>Quarto: </h:outputLabel>
+            <h:selectOneMenu value="#{reservaController.quartoId}" >
+                <f:selectItems value="#{reservaController.listarQuartos()}"
+                               var="quarto" itemLabel="#{quarto}" itemValue="#{quarto.id}" />
+            </h:selectOneMenu>
+            <h:outputText value="&lt;br/&gt;" escape="false" />
+
+            <h:outputLabel>Cliente: </h:outputLabel>
+            <h:selectOneMenu value="#{reservaController.clienteCpf}" >
+                <f:selectItems value="#{reservaController.listarClientes()}"
+                               var="cliente" itemLabel="#{cliente.clienteEmb.nome}" itemValue="#{cliente.clienteEmb.cpf}" />
+            </h:selectOneMenu>
+            <h:outputText value="&lt;br/&gt;" escape="false" />
+
+            <h:outputLabel>Inicio: </h:outputLabel>
+            <h:inputText value="#{reservaController.reserva.inicio}">  
+                <f:convertDateTime pattern="dd/MM/yyyy"/> 
+            </h:inputText> (Formato: dd/MM/yyyy)
+            <h:outputText value="&lt;br/&gt;" escape="false" />
+
+            <h:outputLabel>Termino </h:outputLabel>
+            <h:inputText value="#{reservaController.reserva.termino}">  
+                <f:convertDateTime pattern="dd/MM/yyyy"/> 
+            </h:inputText> (Formato: dd/MM/yyyy)
+            <h:outputText value="&lt;br/&gt;" escape="false" />
+
+            <h:commandButton rendered="#{reservaController.editing == false}"
+                             value="SALVAR" 
+                             action="#{reservaController.salvarReserva()}"/>
+
+            <h:commandButton rendered="#{reservaController.editing == true}"
+                             value="ATUALIZAR" 
+                             action="#{reservaController.atualizarReserva()}"/>
+        </h:form>
+
+        <h3>RESERVA LIST</h3>
+        <h:dataTable value="#{reservaController.listarReservas()}" var="r">
+            <h:column>
+                <f:facet name="header">ID</f:facet>
+                    #{r.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header">QUARTO</f:facet>
+                    #{r.quarto}
+            </h:column>
+            <h:column>
+                <f:facet name="header">CLIENTE</f:facet>
+                    #{r.clienteEmb.nome} 
+            </h:column>
+            <h:column>
+                <f:facet name="header">INICIO</f:facet>
+                    #{r.inicio}
+            </h:column>
+            <h:column>
+                <f:facet name="header">TERMINO</f:facet>
+                    #{r.termino}
+            </h:column>
+            <h:column>
+                <f:facet name="header">EDITAR</f:facet>
+                <h:form>
+                    <h:commandButton value="Editar" action="#{reservaController.setEditarReserva(r)}"/>
+                </h:form>
+            </h:column>
+            <h:column>
+                <f:facet name="header">DELETAR</f:facet>
+                <h:form>
+                    <h:commandButton value="Excluir" action="#{reservaController.deletarReserva(r)}"/>
+                </h:form>
+            </h:column>
+        </h:dataTable>
+
+    </h:body>
+</html>
+

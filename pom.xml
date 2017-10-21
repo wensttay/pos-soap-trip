@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>br.ifpb.simba</groupId>
+        <artifactId>chat</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <groupId>br.edu.ifpb.ads</groupId>
+    <artifactId>pos-soap-trip</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>/pos-soap-trip-cliente</module>
+        <module>/pos-soap-trip-hotel</module>
+        <module>/pos-soap-trip-passagem</module>
+        <module>/pos-soap-trip-agencia</module>
+    </modules>
+</project>

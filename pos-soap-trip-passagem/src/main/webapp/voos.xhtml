@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>PASSGEMS PAGE - Voo</title>
+    </h:head>
+    <h:body>
+        <h3>PASSAGEM - PAGES MENU</h3>
+        <h:form>
+            <h:commandButton value="VOLTAR PARA A HOME PAGE" action="index?faces-redirect=true"></h:commandButton>
+        </h:form>
+
+        <h3>VOO FORM</h3>
+        <h:form>
+            <h:outputLabel>ID: </h:outputLabel>
+            <h:inputText disabled="true" value="#{vooController.voo.id}"/>
+            <h:outputText value="&lt;br/&gt;" escape="false" />
+
+            <h:outputLabel>Code: </h:outputLabel>
+            <h:inputText value="#{vooController.voo.vooEmb.code}"/>
+            <h:outputText value="&lt;br/&gt;" escape="false" />
+
+            <h:outputLabel>Compania: </h:outputLabel>
+            <h:inputText value="#{vooController.voo.vooEmb.compania}"/>
+            <h:outputText value="&lt;br/&gt;" escape="false" />
+
+            <h:outputLabel>Destino: </h:outputLabel>
+            <h:inputText value="#{vooController.voo.vooEmb.destino}"/>
+            <h:outputText value="&lt;br/&gt;" escape="false" />
+
+            <h:outputLabel>Saida: </h:outputLabel>
+            <h:inputText value="#{vooController.voo.vooEmb.saida}" >
+                <f:converter converterId="DataToTimestampConverter" />
+            </h:inputText> (Formato: dd/MM/yyyy hh:mm)
+            <h:outputText value="&lt;br/&gt;" escape="false" />
+
+            <h:outputLabel>Chegada: </h:outputLabel>
+            <h:inputText value="#{vooController.voo.vooEmb.chegada}" >
+                <f:converter converterId="DataToTimestampConverter" />
+            </h:inputText> (Formato: dd/MM/yyyy hh:mm)
+            <h:outputText value="&lt;br/&gt;" escape="false" />
+
+
+            <h:commandButton rendered="#{vooController.editing == false}"
+                             value="SALVAR" 
+                             action="#{vooController.salvarVoo()}"/>
+
+            <h:commandButton rendered="#{vooController.editing == true}"
+                             value="ATUALIZAR" 
+                             action="#{vooController.atualizarVoo()}"/>
+        </h:form>
+
+        <h3>VOO LIST</h3>
+        <h:dataTable value="#{vooController.listarVoos()}" var="v">
+            <h:column>
+                <f:facet name="header">ID</f:facet>
+                    #{v.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header">CODE</f:facet>
+                    #{v.vooEmb.code}
+            </h:column>
+            <h:column>
+                <f:facet name="header">COMPANIA</f:facet>
+                    #{v.vooEmb.compania}
+            </h:column>
+            <h:column>
+                <f:facet name="header">DESTINO</f:facet>
+                    #{v.vooEmb.destino}
+            </h:column>
+            <h:column>
+                <f:facet name="header">SAIDA</f:facet>
+                    #{v.vooEmb.saida}
+            </h:column>
+            <h:column>
+                <f:facet name="header">SAIDA</f:facet>
+                    #{v.vooEmb.chegada}
+            </h:column>
+            <h:column>
+                <f:facet name="header">EDITAR</f:facet>
+                <h:form>
+                    <h:commandButton value="Editar" action="#{vooController.setEditingVoo(v)}"/>
+                </h:form>
+            </h:column>
+            <h:column>
+                <f:facet name="header">DELETAR</f:facet>
+                <h:form>
+                    <h:commandButton value="Excluir" action="#{vooController.deletarVoo(v)}"/>
+                </h:form>
+            </h:column>
+        </h:dataTable>
+    </h:body>
+</html>
+
