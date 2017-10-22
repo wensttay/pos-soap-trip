@@ -40,6 +40,17 @@ public interface Voos {
      * @param arg0
      */
     @WebMethod
+    @RequestWrapper(localName = "atualizar", targetNamespace = "http://service.passagem.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.voo.ws.Atualizar")
+    @ResponseWrapper(localName = "atualizarResponse", targetNamespace = "http://service.passagem.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.voo.ws.AtualizarResponse")
+    public void atualizar(
+        @WebParam(name = "arg0", targetNamespace = "")
+        Voo arg0);
+
+    /**
+     * 
+     * @param arg0
+     */
+    @WebMethod
     @RequestWrapper(localName = "deletar", targetNamespace = "http://service.passagem.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.voo.ws.Deletar")
     @ResponseWrapper(localName = "deletarResponse", targetNamespace = "http://service.passagem.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.voo.ws.DeletarResponse")
     public void deletar(
@@ -70,16 +81,5 @@ public interface Voos {
     @RequestWrapper(localName = "listar", targetNamespace = "http://service.passagem.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.voo.ws.Listar")
     @ResponseWrapper(localName = "listarResponse", targetNamespace = "http://service.passagem.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.voo.ws.ListarResponse")
     public List<VooEmb> listar();
-
-    /**
-     * 
-     * @param arg0
-     */
-    @WebMethod
-    @RequestWrapper(localName = "atualizar", targetNamespace = "http://service.passagem.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.voo.ws.Atualizar")
-    @ResponseWrapper(localName = "atualizarResponse", targetNamespace = "http://service.passagem.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.voo.ws.AtualizarResponse")
-    public void atualizar(
-        @WebParam(name = "arg0", targetNamespace = "")
-        Voo arg0);
 
 }

@@ -40,6 +40,17 @@ public interface Clientes {
      * @param arg0
      */
     @WebMethod
+    @RequestWrapper(localName = "atualizar", targetNamespace = "http://service.cliente.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.cliente.ws.Atualizar")
+    @ResponseWrapper(localName = "atualizarResponse", targetNamespace = "http://service.cliente.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.cliente.ws.AtualizarResponse")
+    public void atualizar(
+        @WebParam(name = "arg0", targetNamespace = "")
+        Cliente arg0);
+
+    /**
+     * 
+     * @param arg0
+     */
+    @WebMethod
     @RequestWrapper(localName = "deletar", targetNamespace = "http://service.cliente.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.cliente.ws.Deletar")
     @ResponseWrapper(localName = "deletarResponse", targetNamespace = "http://service.cliente.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.cliente.ws.DeletarResponse")
     public void deletar(
@@ -95,16 +106,5 @@ public interface Clientes {
     @RequestWrapper(localName = "listarEmb", targetNamespace = "http://service.cliente.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.cliente.ws.ListarEmb")
     @ResponseWrapper(localName = "listarEmbResponse", targetNamespace = "http://service.cliente.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.cliente.ws.ListarEmbResponse")
     public List<ClienteEmb> listarEmb();
-
-    /**
-     * 
-     * @param arg0
-     */
-    @WebMethod
-    @RequestWrapper(localName = "atualizar", targetNamespace = "http://service.cliente.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.cliente.ws.Atualizar")
-    @ResponseWrapper(localName = "atualizarResponse", targetNamespace = "http://service.cliente.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.cliente.ws.AtualizarResponse")
-    public void atualizar(
-        @WebParam(name = "arg0", targetNamespace = "")
-        Cliente arg0);
 
 }

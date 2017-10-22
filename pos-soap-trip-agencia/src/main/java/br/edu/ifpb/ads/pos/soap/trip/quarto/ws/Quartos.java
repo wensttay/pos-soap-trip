@@ -27,42 +27,6 @@ public interface Quartos {
     /**
      * 
      * @param arg0
-     * @return
-     *     returns java.util.List<br.edu.ifpb.ads.pos.soap.trip.quarto.ws.Quarto>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "buscarByHotelNome", targetNamespace = "http://service.hotel.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.quarto.ws.BuscarByHotelNome")
-    @ResponseWrapper(localName = "buscarByHotelNomeResponse", targetNamespace = "http://service.hotel.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.quarto.ws.BuscarByHotelNomeResponse")
-    public List<Quarto> buscarByHotelNome(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0);
-
-    /**
-     * 
-     * @return
-     *     returns java.util.List<br.edu.ifpb.ads.pos.soap.trip.quarto.ws.Quarto>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "listarQuarto", targetNamespace = "http://service.hotel.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.quarto.ws.ListarQuarto")
-    @ResponseWrapper(localName = "listarQuartoResponse", targetNamespace = "http://service.hotel.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.quarto.ws.ListarQuartoResponse")
-    public List<Quarto> listarQuarto();
-
-    /**
-     * 
-     * @param arg0
-     */
-    @WebMethod
-    @RequestWrapper(localName = "salvarQuarto", targetNamespace = "http://service.hotel.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.quarto.ws.SalvarQuarto")
-    @ResponseWrapper(localName = "salvarQuartoResponse", targetNamespace = "http://service.hotel.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.quarto.ws.SalvarQuartoResponse")
-    public void salvarQuarto(
-        @WebParam(name = "arg0", targetNamespace = "")
-        Quarto arg0);
-
-    /**
-     * 
-     * @param arg0
      */
     @WebMethod
     @RequestWrapper(localName = "atualizarQuarto", targetNamespace = "http://service.hotel.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.quarto.ws.AtualizarQuarto")
@@ -81,6 +45,42 @@ public interface Quartos {
     public void deletarQuarto(
         @WebParam(name = "arg0", targetNamespace = "")
         Quarto arg0);
+
+    /**
+     * 
+     * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "salvarQuarto", targetNamespace = "http://service.hotel.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.quarto.ws.SalvarQuarto")
+    @ResponseWrapper(localName = "salvarQuartoResponse", targetNamespace = "http://service.hotel.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.quarto.ws.SalvarQuartoResponse")
+    public void salvarQuarto(
+        @WebParam(name = "arg0", targetNamespace = "")
+        Quarto arg0);
+
+    /**
+     * 
+     * @return
+     *     returns java.util.List<br.edu.ifpb.ads.pos.soap.trip.quarto.ws.Quarto>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listarQuarto", targetNamespace = "http://service.hotel.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.quarto.ws.ListarQuarto")
+    @ResponseWrapper(localName = "listarQuartoResponse", targetNamespace = "http://service.hotel.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.quarto.ws.ListarQuartoResponse")
+    public List<Quarto> listarQuarto();
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns java.util.List<br.edu.ifpb.ads.pos.soap.trip.quarto.ws.Quarto>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "buscarByHotelNome", targetNamespace = "http://service.hotel.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.quarto.ws.BuscarByHotelNome")
+    @ResponseWrapper(localName = "buscarByHotelNomeResponse", targetNamespace = "http://service.hotel.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.quarto.ws.BuscarByHotelNomeResponse")
+    public List<Quarto> buscarByHotelNome(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0);
 
     /**
      * 

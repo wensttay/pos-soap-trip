@@ -29,6 +29,17 @@ public interface Passagens {
      * @param arg0
      */
     @WebMethod
+    @RequestWrapper(localName = "atualizarPassagem", targetNamespace = "http://service.passagem.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.passagem.ws.AtualizarPassagem")
+    @ResponseWrapper(localName = "atualizarPassagemResponse", targetNamespace = "http://service.passagem.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.passagem.ws.AtualizarPassagemResponse")
+    public void atualizarPassagem(
+        @WebParam(name = "arg0", targetNamespace = "")
+        Passagem arg0);
+
+    /**
+     * 
+     * @param arg0
+     */
+    @WebMethod
     @RequestWrapper(localName = "deletarPassagem", targetNamespace = "http://service.passagem.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.passagem.ws.DeletarPassagem")
     @ResponseWrapper(localName = "deletarPassagemResponse", targetNamespace = "http://service.passagem.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.passagem.ws.DeletarPassagemResponse")
     public void deletarPassagem(
@@ -53,20 +64,6 @@ public interface Passagens {
      * 
      * @param arg0
      * @return
-     *     returns java.util.List<br.edu.ifpb.ads.pos.soap.trip.passagem.ws.Passagem>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "buscarPassagemByVooCode", targetNamespace = "http://service.passagem.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.passagem.ws.BuscarPassagemByVooCode")
-    @ResponseWrapper(localName = "buscarPassagemByVooCodeResponse", targetNamespace = "http://service.passagem.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.passagem.ws.BuscarPassagemByVooCodeResponse")
-    public List<Passagem> buscarPassagemByVooCode(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0);
-
-    /**
-     * 
-     * @param arg0
-     * @return
      *     returns br.edu.ifpb.ads.pos.soap.trip.passagem.ws.Passagem
      */
     @WebMethod
@@ -80,13 +77,16 @@ public interface Passagens {
     /**
      * 
      * @param arg0
+     * @return
+     *     returns java.util.List<br.edu.ifpb.ads.pos.soap.trip.passagem.ws.Passagem>
      */
     @WebMethod
-    @RequestWrapper(localName = "atualizarPassagem", targetNamespace = "http://service.passagem.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.passagem.ws.AtualizarPassagem")
-    @ResponseWrapper(localName = "atualizarPassagemResponse", targetNamespace = "http://service.passagem.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.passagem.ws.AtualizarPassagemResponse")
-    public void atualizarPassagem(
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "buscarPassagemByVooCode", targetNamespace = "http://service.passagem.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.passagem.ws.BuscarPassagemByVooCode")
+    @ResponseWrapper(localName = "buscarPassagemByVooCodeResponse", targetNamespace = "http://service.passagem.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.passagem.ws.BuscarPassagemByVooCodeResponse")
+    public List<Passagem> buscarPassagemByVooCode(
         @WebParam(name = "arg0", targetNamespace = "")
-        Passagem arg0);
+        String arg0);
 
     /**
      * 

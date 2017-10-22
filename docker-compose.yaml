@@ -1,0 +1,84 @@
+version: "2"
+services:
+  trip-cliente-db:
+    container_name: trip-cliente-db-postgres
+    build: ./pos-soap-trip-cliente/database/
+    image: trip-cliente-db-postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - trip-cliente-db-postgres-volume:/var/lib/postgresql/data/
+  trip-cliente-api: 
+    container_name: trip-cliente-api-payara
+    build: ./trip-cliente/
+    image: trip-cliente-api-payara
+    ports:
+      - "8081:8080"
+    links:
+      - "trip-cliente-db:trip-cliente-db"
+
+  trip-hotel-db:
+    container_name: trip-hotel-db-postgres
+    build: ./pos-soap-trip-hotel/database/
+    image: trip-hotel-db-postgres
+    ports:
+      - "5434:5432"
+    volumes:
+      - trip-hotel-db-postgres-volume:/var/lib/postgresql/data/
+  trip-hotel-api: 
+    container_name: trip-hotel-api-payara
+    build: ./pos-soap-trip-hotel/
+    image: trip-hotel-api-payara
+    ports:
+      - "8082:8080"
+    links:
+      - "trip-hotel-db:trip-hotel-db"
+      - "trip-cliente-api:trip-cliente-api"
+
+  trip-passagem-db:
+    container_name: trip-passagem-db-postgres
+    build: ./pos-soap-trip-passagem/database/
+    image: trip-passagem-db-postgres
+    ports:
+      - "5435:5432"
+    volumes:
+      - trip-passagem-db-postgres-volume:/var/lib/postgresql/data/
+  trip-passagem-api: 
+    container_name: trip-passagem-api-payara
+    build: ./pos-soap-trip-passagem/
+    image: trip-passagem-api-payara
+    ports:
+      - "8083:8080"
+    links:
+      - "trip-passagem-db:trip-passagem-db"
+      - "trip-cliente-api:trip-cliente-api"
+
+  trip-agencia-db:
+    container_name: trip-agencia-db-postgres
+    build: ./pos-soap-trip-agencia/database/
+    image: trip-agencia-db-postgres
+    ports:
+      - "5436:5432"
+    volumes:
+      - trip-agencia-db-postgres-volume:/var/lib/postgresql/data/
+  trip-agencia-api: 
+    container_name: trip-agencia-api-payara
+    build: ./viajei-microservice-agency/
+    image: trip-agencia-api-payara
+    ports:
+      - "8084:8080"
+    links:
+      - "trip-agencia-db:trip-agencia-db"
+      - "trip-cliente-api:trip-cliente-api"
+      - "trip-hotel-api:trip-hotel-api"
+      - "trip-passagem-api:trip-passagem-api"
+
+volumes:
+  trip-cliente-db-postgres-volume:
+    driver: local
+  trip-hotel-db-postgres-volume:
+    driver: local
+  trip-passagem-db-postgres-volume:
+    driver: local
+  trip-agencia-db-postgres-volume:
+    driver: local

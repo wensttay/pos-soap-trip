@@ -37,6 +37,37 @@ public interface Reservas {
 
     /**
      * 
+     * @param arg3
+     * @param arg2
+     * @param arg1
+     * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "fazerRezerva", targetNamespace = "http://service.hotel.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.reserva.ws.FazerRezerva")
+    @ResponseWrapper(localName = "fazerRezervaResponse", targetNamespace = "http://service.hotel.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.reserva.ws.FazerRezervaResponse")
+    public void fazerRezerva(
+        @WebParam(name = "arg0", targetNamespace = "")
+        int arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        String arg1,
+        @WebParam(name = "arg2", targetNamespace = "")
+        String arg2,
+        @WebParam(name = "arg3", targetNamespace = "")
+        String arg3);
+
+    /**
+     * 
+     * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "atualizar", targetNamespace = "http://service.hotel.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.reserva.ws.Atualizar")
+    @ResponseWrapper(localName = "atualizarResponse", targetNamespace = "http://service.hotel.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.reserva.ws.AtualizarResponse")
+    public void atualizar(
+        @WebParam(name = "arg0", targetNamespace = "")
+        Reserva arg0);
+
+    /**
+     * 
      * @param arg0
      */
     @WebMethod
@@ -70,36 +101,5 @@ public interface Reservas {
     @RequestWrapper(localName = "listar", targetNamespace = "http://service.hotel.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.reserva.ws.Listar")
     @ResponseWrapper(localName = "listarResponse", targetNamespace = "http://service.hotel.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.reserva.ws.ListarResponse")
     public List<Reserva> listar();
-
-    /**
-     * 
-     * @param arg0
-     */
-    @WebMethod
-    @RequestWrapper(localName = "atualizar", targetNamespace = "http://service.hotel.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.reserva.ws.Atualizar")
-    @ResponseWrapper(localName = "atualizarResponse", targetNamespace = "http://service.hotel.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.reserva.ws.AtualizarResponse")
-    public void atualizar(
-        @WebParam(name = "arg0", targetNamespace = "")
-        Reserva arg0);
-
-    /**
-     * 
-     * @param arg3
-     * @param arg2
-     * @param arg1
-     * @param arg0
-     */
-    @WebMethod
-    @RequestWrapper(localName = "fazerRezerva", targetNamespace = "http://service.hotel.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.reserva.ws.FazerRezerva")
-    @ResponseWrapper(localName = "fazerRezervaResponse", targetNamespace = "http://service.hotel.trip.soap.pos.ads.ifpb.edu.br/", className = "br.edu.ifpb.ads.pos.soap.trip.reserva.ws.FazerRezervaResponse")
-    public void fazerRezerva(
-        @WebParam(name = "arg0", targetNamespace = "")
-        int arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        String arg1,
-        @WebParam(name = "arg2", targetNamespace = "")
-        String arg2,
-        @WebParam(name = "arg3", targetNamespace = "")
-        String arg3);
 
 }
